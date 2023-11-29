@@ -1,0 +1,44 @@
+ <div class="todos">
+	<form (submit)="addTodo()">
+	  <input 
+		type="text"
+		name="inputTodo"
+		placeholder="Enter todo..."
+		class="todo-input"
+		[(ngModel)]="inputTodo"
+	  />
+  
+	  <div class="custom-container">
+		<p class="custom-text">Pick up a category</p>
+	  </div>
+  
+	   <div class="category-container">
+		<div class="category-box" (click)="selectCategory('business')" [class.selected]="selectedCategory === 'business'">
+		  <p class="category-text" style="color: white; font-size: 18px;" >Business</p>
+		</div>
+		<div class="category-box" style="background-color: #3A82EE;" (click)="selectCategory('personal')" [class.selected]="selectedCategory === 'personal'">
+			<p class="category-text" style="color: white; font-size: 18px;">Personal</p>
+		  </div>		  
+	  </div> 
+
+	  
+  
+	  <input type="submit" value="Add Todo" class="todo-submit" />
+	</form>
+  
+	<div *ngFor="let todo of todos; let i = index;" class="todo {{ (todo.completed ? 'done' : '') }}">
+	  <div class="category-indicator" [class.business]="todo.category === 'business'" [class.personal]="todo.category === 'personal'"></div>
+	  <div class="content" (click)="toggleDone(i)">{{ todo.content }}</div>
+	  <div class="date-added" style="background: rgb(62, 200, 16);">Added on: {{ todo.dateAdded | date: 'medium' }}</div>
+	  <button class="delete" (click)="deleteTodo(i)">Remove</button>
+	</div>
+  </div> 
+
+
+ 
+  
+
+
+
+
+
